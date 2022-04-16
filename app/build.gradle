@@ -65,6 +65,7 @@ dependencies {
     // Room
     implementation("androidx.room:room-runtime:$roomVersion")
     implementation("androidx.room:room-ktx:$roomVersion")
+    implementation 'com.google.android.material:material:1.5.0'
     kapt("androidx.room:room-compiler:$roomVersion")
 
     // Room
@@ -111,6 +112,9 @@ dependencies {
 
     // Splash API
     implementation 'androidx.core:core-splashscreen:1.0.0-beta02'
+
+    // Material 3
+    implementation("androidx.compose.material3:material3:1.0.0-alpha09")
 
     debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.8.1'
 
