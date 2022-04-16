@@ -10,6 +10,8 @@ import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalContext
+import com.google.accompanist.systemuicontroller.SystemUiController
+import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.google.android.material.color.ColorRoles
 import com.google.android.material.color.MaterialColors
 
@@ -83,6 +85,12 @@ fun BorutoComposeTheme(
     } else {
         DarkThemeColors
     }
+
+    val systemUi = rememberSystemUiController()
+    systemUi.setStatusBarColor(
+        if(useDarkTheme) Color.Black
+        else MaterialTheme.colorScheme.primary
+    )
 
     MaterialTheme(
         colorScheme = colors,
