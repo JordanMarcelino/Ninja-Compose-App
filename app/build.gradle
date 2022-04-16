@@ -63,6 +63,9 @@ dependencies {
     // Navigation
     implementation("androidx.navigation:navigation-compose:$nav_version")
 
+    // Data Store Pref
+    implementation("androidx.datastore:datastore-preferences:1.0.0")
+
     // Room
     implementation("androidx.room:room-runtime:$roomVersion")
     implementation("androidx.room:room-ktx:$roomVersion")

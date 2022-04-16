@@ -4,8 +4,12 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import com.example.boruto_compose.ui.screen.splash_screen.SplashScreen
+import com.example.boruto_compose.ui.screen.home.HomeScreen
+import com.example.boruto_compose.ui.screen.splash.SplashScreen
+import com.example.boruto_compose.ui.screen.welcome.WelcomeScreen
+import com.google.accompanist.pager.ExperimentalPagerApi
 
+@ExperimentalPagerApi
 @Composable
 fun NavGraph(
     navController : NavHostController
@@ -20,11 +24,11 @@ fun NavGraph(
         }
 
         composable(route = Screen.Welcome.route){
-
+            WelcomeScreen(navController = navController)
         }
 
         composable(route = Screen.Home.route){
-
+            HomeScreen()
         }
 
         composable(route = Screen.Search.route){
