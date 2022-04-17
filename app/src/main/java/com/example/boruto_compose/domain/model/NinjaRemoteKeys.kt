@@ -5,7 +5,7 @@ import androidx.room.PrimaryKey
 import com.example.boruto_compose.util.Constant.NINJA_REMOTE_KEY_DATABASE_TABLE
 
 @Entity(tableName = NINJA_REMOTE_KEY_DATABASE_TABLE)
-data class NinjaRemoteKey(
+data class NinjaRemoteKeys(
     @PrimaryKey(autoGenerate = false)
     val id : Int,
     val prevPage : Int?,

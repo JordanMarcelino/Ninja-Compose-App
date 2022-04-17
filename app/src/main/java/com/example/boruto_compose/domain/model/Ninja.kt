@@ -18,4 +18,12 @@ data class Ninja(
     val family: List<String>,
     val abilities: List<String>,
     val natureTypes: List<String>
-)
+){
+    fun toNinjaRemoteKey(id : Int, prevPage : Int?, nextPage : Int?) : NinjaRemoteKeys{
+        return NinjaRemoteKeys(
+            id = id,
+            prevPage = prevPage,
+            nextPage = nextPage
+        )
+    }
+}

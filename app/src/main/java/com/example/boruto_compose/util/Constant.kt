@@ -13,4 +13,8 @@ object Constant {
 
     const val ON_BOARDING_PREFERENCES_KEY = "on_boarding_key"
     const val DATA_STORE_PREFERENCES = "on_boarding_preferences"
+
+    const val BASE_URL = "http:/10.0.0.2:8080/"
+
+    const val ITEM_PER_PAGE = 3
 }
