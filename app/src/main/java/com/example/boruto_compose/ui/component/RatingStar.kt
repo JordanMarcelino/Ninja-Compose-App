@@ -19,6 +19,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.boruto_compose.R
+import com.example.boruto_compose.ui.theme.STAR_SIZE
 import com.example.boruto_compose.ui.theme.spacing
 import com.example.boruto_compose.util.Constant.EMPTY_STAR
 import com.example.boruto_compose.util.Constant.FILLED_STAR
@@ -86,7 +87,7 @@ fun FilledStar(
 
     Canvas(
         modifier = Modifier
-            .size(24.dp)
+            .size(STAR_SIZE)
     ) {
         val left = (size.width / 2f) - (starBounds.width / 1.7f)
         val top = (size.height / 2f) - (starBounds.height / 1.7f)
@@ -116,7 +117,7 @@ fun HalfFilledStar(
 
     Canvas(
         modifier = Modifier
-            .size(24.dp)
+            .size(STAR_SIZE)
     ) {
         val left = (size.width / 2f) - (starBounds.width / 1.7f)
         val top = (size.height / 2f) - (starBounds.height / 1.7f)
@@ -157,7 +158,7 @@ fun EmptyStar(
 
     Canvas(
         modifier = Modifier
-            .size(24.dp)
+            .size(STAR_SIZE)
     ) {
         val left = (size.width / 2f) - (starBounds.width / 1.7f)
         val top = (size.height / 2f) - (starBounds.height / 1.7f)

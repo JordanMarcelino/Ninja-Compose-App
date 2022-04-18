@@ -1,7 +1,6 @@
 package com.example.boruto_compose.di
 
 import androidx.paging.ExperimentalPagingApi
-import com.example.boruto_compose.data.data_source.local.db.BorutoDatabase
 import com.example.boruto_compose.data.data_source.remote.BorutoApi
 import com.example.boruto_compose.data.data_source.remote.BorutoRemoteDataSource
 import com.example.boruto_compose.data.data_source.remote.BorutoRemoteDataSourceImpl
@@ -11,6 +10,7 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.json.Json
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
@@ -19,6 +19,7 @@ import retrofit2.Retrofit
 import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
+@ExperimentalSerializationApi
 @ExperimentalPagingApi
 @Module
 @InstallIn(SingletonComponent::class)
@@ -31,8 +32,8 @@ object NetworkModule {
         .addInterceptor(
             HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
         )
-        .readTimeout(15, TimeUnit.MINUTES)
-        .connectTimeout(15, TimeUnit.MINUTES)
+        .readTimeout(15, TimeUnit.SECONDS)
+        .connectTimeout(15, TimeUnit.SECONDS)
         .build()
 
     @Provides
@@ -60,10 +61,8 @@ object NetworkModule {
     @Provides
     @Singleton
     fun providesBorutoRemoteDataSource(
-        borutoApi: BorutoApi,
-        borutoDatabase: BorutoDatabase
+        borutoApi: BorutoApi
     ): BorutoRemoteDataSource = BorutoRemoteDataSourceImpl(
-        borutoApi = borutoApi,
-        borutoDatabase = borutoDatabase
+        borutoApi = borutoApi
     )
 }

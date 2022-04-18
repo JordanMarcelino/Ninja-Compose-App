@@ -6,6 +6,6 @@ import kotlinx.coroutines.flow.Flow
 
 interface BorutoRepository {
 
-    suspend fun getNinjas() : Flow<PagingData<Ninja>>
-    suspend fun searchNinjas(query : String) : Flow<PagingData<Ninja>>
+    fun getNinjas() : Flow<PagingData<Ninja>>
+    fun searchNinjas(query : String) : Flow<PagingData<Ninja>>
 }

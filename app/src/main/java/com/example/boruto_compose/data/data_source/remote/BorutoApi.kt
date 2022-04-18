@@ -6,14 +6,14 @@ import retrofit2.http.Query
 
 interface BorutoApi {
 
-    @GET("boruto/ninjas")
-    fun getNinjas(
-        @Query("page") page : Int = 1
-    ) : ApiResponse
+    @GET("/boruto/ninjas")
+    suspend fun getNinjas(
+        @Query("page") page: Int = 1
+    ): ApiResponse
 
-    @GET("search/ninjas")
-    fun searchNinjas(
-        @Query("query") query : String
-    ) : ApiResponse
+    @GET("/search/ninjas")
+    suspend fun searchNinjas(
+        @Query("query") query: String
+    ): ApiResponse
 
 }

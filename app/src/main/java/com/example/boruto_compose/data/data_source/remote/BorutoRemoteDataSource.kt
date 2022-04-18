@@ -1,12 +1,10 @@
 package com.example.boruto_compose.data.data_source.remote
 
-import androidx.paging.PagingData
-import com.example.boruto_compose.domain.model.Ninja
-import kotlinx.coroutines.flow.Flow
+import com.example.boruto_compose.domain.model.ApiResponse
 
 interface BorutoRemoteDataSource {
 
-    suspend fun getNinjas() : Flow<PagingData<Ninja>>
-    suspend fun searchNinjas(query : String) : Flow<PagingData<Ninja>>
+    suspend fun getNinjas(page: Int): ApiResponse
+    suspend fun searchNinjas(query: String): ApiResponse
 
 }
