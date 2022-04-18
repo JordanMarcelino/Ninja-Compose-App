@@ -1,5 +1,6 @@
 package com.example.boruto_compose.ui.navigation
 
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
@@ -9,6 +10,7 @@ import com.example.boruto_compose.ui.screen.splash.SplashScreen
 import com.example.boruto_compose.ui.screen.welcome.WelcomeScreen
 import com.google.accompanist.pager.ExperimentalPagerApi
 
+@ExperimentalMaterial3Api
 @ExperimentalPagerApi
 @Composable
 fun NavGraph(

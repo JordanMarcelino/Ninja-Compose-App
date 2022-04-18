@@ -66,6 +66,7 @@ fun WelcomeScreen(
             welcomeViewModel.setComplete(true)
         }
     }
+
 }
 
 @ExperimentalPagerApi
@@ -76,7 +77,7 @@ fun PagerScreen(
     Column(
         modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Top,
-        horizontalAlignment = Alignment.CenterHorizontally
+        horizontalAlignment = CenterHorizontally
     ) {
         Image(
             modifier = Modifier

@@ -17,4 +17,8 @@ object Constant {
     const val BASE_URL = "http:/10.0.0.2:8080/"
 
     const val ITEM_PER_PAGE = 3
+
+    const val FILLED_STAR = "filled_star"
+    const val HALF_FILLED_STAR = "half_filled_star"
+    const val EMPTY_STAR = "empty_star"
 }

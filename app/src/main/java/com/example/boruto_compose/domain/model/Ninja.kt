@@ -3,7 +3,9 @@ package com.example.boruto_compose.domain.model
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.example.boruto_compose.util.Constant.NINJA_DATABASE_TABLE
+import kotlinx.serialization.Serializable
 
+@Serializable
 @Entity(tableName = NINJA_DATABASE_TABLE)
 data class Ninja(
     @PrimaryKey(autoGenerate = false)
