@@ -5,4 +5,7 @@
     <string name="explore">Explore</string>
     <string name="star_path">M14,21.288,21.416,26l-1.968-8.88L26,11.145l-8.628-.771L14,2l-3.372,8.375L2,11.145,8.552,17.12,6.584,26Z</string>
     <string name="ninja_image">Ninja Image</string>
+    <string name="search_place_holder">Search here...</string>
+    <string name="search_ninja">Search Ninja</string>
+    <string name="close">Close</string>
 </resources>

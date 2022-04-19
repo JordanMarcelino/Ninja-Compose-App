@@ -82,7 +82,11 @@ fun shouldShowItem(
                 false
             }
             error != null -> {
-                EmptyScreen(error = error)
+                EmptyScreen(error = error, ninjas = ninjas)
+                false
+            }
+            ninjas.itemCount < 1 -> {
+                EmptyScreen()
                 false
             }
             else -> true

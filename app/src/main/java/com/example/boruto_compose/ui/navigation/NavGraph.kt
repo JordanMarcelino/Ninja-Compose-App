@@ -3,11 +3,15 @@ package com.example.boruto_compose.ui.navigation
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.navArgument
 import com.example.boruto_compose.ui.screen.home.HomeScreen
+import com.example.boruto_compose.ui.screen.search.SearchScreen
 import com.example.boruto_compose.ui.screen.splash.SplashScreen
 import com.example.boruto_compose.ui.screen.welcome.WelcomeScreen
+import com.example.boruto_compose.util.Constant.DETAILS_ARGUMENT_KEY
 import com.google.accompanist.pager.ExperimentalPagerApi
 
 @ExperimentalMaterial3Api
@@ -34,10 +38,19 @@ fun NavGraph(
         }
 
         composable(route = Screen.Search.route){
-
+            SearchScreen(navController = navController)
         }
 
-        composable(route = Screen.Details.route){
+        composable(
+            route = Screen.Details.route,
+            arguments = listOf(
+                navArgument(
+                    name = DETAILS_ARGUMENT_KEY
+                ){
+                    type = NavType.IntType
+                }
+            )
+        ){
 
         }
     }

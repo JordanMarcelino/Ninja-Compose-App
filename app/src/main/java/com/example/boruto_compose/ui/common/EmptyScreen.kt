@@ -5,6 +5,8 @@ import androidx.compose.animation.core.FastOutSlowInEasing
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.ContentAlpha
 import androidx.compose.material.Icon
 import androidx.compose.material.Text
@@ -18,28 +20,37 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.paging.LoadState
+import androidx.paging.compose.LazyPagingItems
 import com.example.boruto_compose.R
+import com.example.boruto_compose.domain.model.Ninja
 import com.example.boruto_compose.ui.theme.NETWORK_ERROR_SIZE
 import com.example.boruto_compose.ui.theme.spacing
-import timber.log.Timber
+import com.google.accompanist.swiperefresh.SwipeRefresh
+import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
+import java.net.ConnectException
+import java.net.SocketTimeoutException
 
 @Composable
 fun EmptyScreen(
-    error: LoadState.Error
+    error: LoadState.Error? = null,
+    ninjas: LazyPagingItems<Ninja>? = null
 ) {
-    Timber.d(
-        error.toString()
-    )
-    val message by remember { mutableStateOf(parseStringError(message = error.toString())) }
-    val icon by remember { mutableStateOf(R.drawable.network_error) }
-    val alpha = remember { Animatable(initialValue = 0f) }
-    val target = ContentAlpha.disabled
 
-    LaunchedEffect(key1 = alpha) {
+    var message by remember { mutableStateOf("Find Your Favorite Ninjas!") }
+    var icon by remember { mutableStateOf(R.drawable.search_document) }
+    val alpha = remember { Animatable(initialValue = 0f) }
+    val target = ContentAlpha.medium
+
+    if (error != null) {
+        message = parseStringError(error)
+        icon = R.drawable.network_error
+    }
+
+    LaunchedEffect(key1 = true) {
         alpha.animateTo(
             targetValue = target,
             animationSpec = tween(
-                durationMillis = 1000,
+                durationMillis = 2000,
                 easing = FastOutSlowInEasing
             )
         )
@@ -48,7 +59,9 @@ fun EmptyScreen(
     EmptyContent(
         alpha = alpha.value,
         icon = icon,
-        message = message
+        message = message,
+        ninjas = ninjas,
+        error = error
     )
 }
 
@@ -57,40 +70,56 @@ fun EmptyContent(
     alpha: Float,
     icon: Int,
     message: String,
+    ninjas: LazyPagingItems<Ninja>? = null,
+    error : LoadState.Error? = null,
     color: Color =
         if (isSystemInDarkTheme()) Color.DarkGray
         else Color.LightGray
 ) {
-    Column(
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally,
-        modifier = Modifier.fillMaxSize()
-    ) {
-        Icon(
-            painter = painterResource(id = icon),
-            contentDescription = "Error",
+    var isRefreshing by remember { mutableStateOf(false) }
+
+    SwipeRefresh(
+        swipeEnabled = error != null,
+        state = rememberSwipeRefreshState(isRefreshing = isRefreshing),
+        modifier = Modifier.fillMaxSize(),
+        onRefresh = {
+            isRefreshing = true
+            ninjas?.refresh()
+            isRefreshing = false
+        }) {
+        Column(
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally,
             modifier = Modifier
-                .size(NETWORK_ERROR_SIZE)
-                .alpha(alpha),
-            tint = color
-        )
-        Text(
-            modifier = Modifier
-                .padding(top = MaterialTheme.spacing.medium)
-                .alpha(alpha),
-            text = message,
-            fontSize = MaterialTheme.typography.titleMedium.fontSize,
-            textAlign = TextAlign.Center,
-        )
+                .fillMaxSize()
+                .verticalScroll(rememberScrollState())
+        ) {
+            Icon(
+                painter = painterResource(id = icon),
+                contentDescription = "Error",
+                modifier = Modifier
+                    .size(NETWORK_ERROR_SIZE)
+                    .alpha(alpha),
+                tint = color
+            )
+            Text(
+                modifier = Modifier
+                    .padding(top = MaterialTheme.spacing.medium)
+                    .alpha(alpha),
+                text = message,
+                fontSize = MaterialTheme.typography.titleMedium.fontSize,
+                textAlign = TextAlign.Center,
+            )
+        }
     }
 }
 
 fun parseStringError(
-    message: String
+    error: LoadState.Error?
 ): String {
-    return when {
-        message.contains("SocketTimeoutException") -> "Server Unavailable"
-        message.contains("ConnectException") -> "Internet Unavailable"
+    return when (error?.error) {
+        is SocketTimeoutException -> "Server Unavailable."
+        is ConnectException -> "Internet Unavailable."
         else -> "Unknown Error"
     }
 }
@@ -101,6 +130,6 @@ fun EmptyScreenPreview() {
     EmptyContent(
         alpha = 1f,
         icon = R.drawable.network_error,
-        message = "Internet Unavailable"
+        message = "Internet Unavailable",
     )
 }

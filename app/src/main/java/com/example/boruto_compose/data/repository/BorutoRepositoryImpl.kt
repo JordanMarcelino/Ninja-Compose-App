@@ -7,6 +7,7 @@ import androidx.paging.PagingData
 import com.example.boruto_compose.data.data_source.local.db.BorutoDatabase
 import com.example.boruto_compose.data.data_source.remote.BorutoRemoteDataSource
 import com.example.boruto_compose.data.paging_source.NinjaRemoteMediator
+import com.example.boruto_compose.data.paging_source.SearchNinjaPagingSource
 import com.example.boruto_compose.domain.model.Ninja
 import com.example.boruto_compose.domain.repository.BorutoRepository
 import com.example.boruto_compose.util.Constant.ITEM_PER_PAGE
@@ -37,6 +38,14 @@ class BorutoRepositoryImpl @Inject constructor(
     }
 
     override fun searchNinjas(query: String): Flow<PagingData<Ninja>> {
-        TODO("Not yet implemented")
+        return Pager(
+            config = PagingConfig(pageSize = ITEM_PER_PAGE),
+            pagingSourceFactory = {
+                SearchNinjaPagingSource(
+                    borutoRemoteDataSource = borutoRemoteDataSource,
+                    query = query
+                )
+            }
+        ).flow
     }
 }
