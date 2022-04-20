@@ -8,4 +8,5 @@ interface BorutoRepository {
 
     fun getNinjas() : Flow<PagingData<Ninja>>
     fun searchNinjas(query : String) : Flow<PagingData<Ninja>>
+    suspend fun getNinjaDetails(ninjaId : Int) : Ninja
 }

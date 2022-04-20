@@ -1,5 +1,6 @@
 package com.example.boruto_compose.ui.navigation
 
+import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
@@ -7,6 +8,7 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
+import com.example.boruto_compose.ui.screen.details.DetailsScreen
 import com.example.boruto_compose.ui.screen.home.HomeScreen
 import com.example.boruto_compose.ui.screen.search.SearchScreen
 import com.example.boruto_compose.ui.screen.splash.SplashScreen
@@ -14,6 +16,7 @@ import com.example.boruto_compose.ui.screen.welcome.WelcomeScreen
 import com.example.boruto_compose.util.Constant.DETAILS_ARGUMENT_KEY
 import com.google.accompanist.pager.ExperimentalPagerApi
 
+@ExperimentalMaterialApi
 @ExperimentalMaterial3Api
 @ExperimentalPagerApi
 @Composable
@@ -51,7 +54,7 @@ fun NavGraph(
                 }
             )
         ){
-
+            DetailsScreen(navController = navController)
         }
     }
 }

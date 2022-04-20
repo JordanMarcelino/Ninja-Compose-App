@@ -21,4 +21,8 @@ object Constant {
     const val FILLED_STAR = "filled_star"
     const val HALF_FILLED_STAR = "half_filled_star"
     const val EMPTY_STAR = "empty_star"
+
+    const val VIBRANT = "vibrant"
+    const val DARK_VIBRANT = "darkVibrant"
+    const val ON_DARK_VIBRANT = "onDarkVibrant"
 }

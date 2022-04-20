@@ -11,7 +11,9 @@ import com.example.boruto_compose.data.paging_source.SearchNinjaPagingSource
 import com.example.boruto_compose.domain.model.Ninja
 import com.example.boruto_compose.domain.repository.BorutoRepository
 import com.example.boruto_compose.util.Constant.ITEM_PER_PAGE
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 @ExperimentalPagingApi
@@ -47,5 +49,11 @@ class BorutoRepositoryImpl @Inject constructor(
                 )
             }
         ).flow
+    }
+
+    override suspend fun getNinjaDetails(ninjaId: Int): Ninja {
+        return withContext(Dispatchers.IO) {
+            ninjaDao.getNinja(ninjaId = ninjaId)
+        }
     }
 }

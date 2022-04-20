@@ -15,6 +15,7 @@ import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.boruto_compose.R
@@ -54,8 +55,9 @@ fun SearchWidget(
             value = text,
             onValueChange = onValueChange,
             textStyle = TextStyle(
-                fontSize = MaterialTheme.typography.titleMedium.fontSize,
+                fontSize = MaterialTheme.typography.titleLarge.fontSize,
                 color = MaterialTheme.colorScheme.onPrimary,
+                fontWeight = FontWeight.Medium,
             ),
             placeholder = {
                 Text(
