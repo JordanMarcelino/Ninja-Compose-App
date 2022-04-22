@@ -15,6 +15,8 @@ import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -54,7 +56,10 @@ fun WelcomeScreen(
             pagerState = pagerState,
             modifier = Modifier
                 .weight(1f)
-                .align(CenterHorizontally),
+                .align(CenterHorizontally)
+                .semantics {
+                    contentDescription = "PagerIndicator"
+                },
             activeColor = MaterialTheme.colorScheme.primary,
             inactiveColor = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.5f),
             indicatorWidth = MaterialTheme.spacing.medium,
@@ -82,7 +87,10 @@ fun PagerScreen(
         Image(
             modifier = Modifier
                 .fillMaxWidth(0.5f)
-                .fillMaxHeight(0.7f),
+                .fillMaxHeight(0.7f)
+                .semantics {
+                    contentDescription = "PagerScreen"
+                },
             painter = painterResource(id = onBoardingPage.image),
             contentDescription = onBoardingPage.title
         )
@@ -90,7 +98,11 @@ fun PagerScreen(
             text = onBoardingPage.title,
             fontSize = MaterialTheme.typography.displayMedium.fontSize,
             fontWeight = FontWeight.Bold,
-            modifier = Modifier.fillMaxWidth(),
+            modifier = Modifier
+                .fillMaxWidth()
+                .semantics {
+                    contentDescription = "PagerTitle"
+                },
             textAlign = TextAlign.Center,
             color = MaterialTheme.colorScheme.onBackground
         )
@@ -126,7 +138,11 @@ fun FinishButton(
         ) {
             Button(
                 onClick = onClick,
-                modifier = Modifier.padding(vertical = MaterialTheme.spacing.small),
+                modifier = Modifier
+                    .padding(vertical = MaterialTheme.spacing.small)
+                    .semantics {
+                        contentDescription = "FinishButton"
+                    },
                 shape = RoundedCornerShape(MaterialTheme.spacing.medium),
                 colors = buttonColors(
                     backgroundColor = MaterialTheme.colorScheme.secondary
