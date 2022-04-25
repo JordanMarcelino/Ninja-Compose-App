@@ -55,9 +55,11 @@ fun DetailsBottomSheet(
     var onDarkVibrant by remember { mutableStateOf("#FFFFFF") }
 
     val systemUi = rememberSystemUiController()
-    systemUi.setStatusBarColor(
-        color = Color(parseColor(darkVibrant))
-    )
+    SideEffect {
+        systemUi.setStatusBarColor(
+            color = Color(parseColor(darkVibrant))
+        )
+    }
 
     LaunchedEffect(key1 = ninja) {
         vibrant = color[VIBRANT]!!

@@ -4,6 +4,7 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.SideEffect
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.paging.compose.collectAsLazyPagingItems
@@ -20,9 +21,13 @@ fun HomeScreen(
 
     val ninjas = homeViewModel.ninjas.value.collectAsLazyPagingItems()
     val systemUi = rememberSystemUiController()
-    systemUi.setStatusBarColor(
-        color = MaterialTheme.colorScheme.primary
-    )
+    val statusBarColor = MaterialTheme.colorScheme.primary
+    SideEffect {
+        systemUi.setStatusBarColor(
+            color = statusBarColor
+        )
+    }
+
 
     Scaffold(
         topBar = {

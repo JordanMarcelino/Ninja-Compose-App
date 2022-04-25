@@ -6,7 +6,7 @@ import androidx.compose.ui.test.onAllNodesWithContentDescription
 import org.junit.Rule
 import org.junit.Test
 
-class RatingStarTest{
+class RatingStarTest {
 
     @get:Rule
     val composeRule = createComposeRule()
