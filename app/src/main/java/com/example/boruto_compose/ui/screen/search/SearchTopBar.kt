@@ -14,6 +14,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
@@ -86,6 +88,10 @@ fun SearchWidget(
             },
             trailingIcon = {
                 IconButton(
+                    modifier = Modifier.
+                        semantics {
+                            contentDescription = "CloseButton"
+                        },
                     onClick = {
                         if (text.isNotEmpty()) {
                             onValueChange("")
@@ -112,7 +118,11 @@ fun SearchWidget(
             colors = TextFieldDefaults.textFieldColors(
                 backgroundColor = Color.Transparent,
                 cursorColor = MaterialTheme.colorScheme.onPrimary
-            )
+            ),
+            modifier = Modifier
+                .semantics {
+                    contentDescription = "SearchTextField"
+                }
         )
     }
 

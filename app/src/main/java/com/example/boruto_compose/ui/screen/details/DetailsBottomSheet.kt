@@ -37,6 +37,7 @@ import com.example.boruto_compose.util.Constant.BASE_URL
 import com.example.boruto_compose.util.Constant.DARK_VIBRANT
 import com.example.boruto_compose.util.Constant.ON_DARK_VIBRANT
 import com.example.boruto_compose.util.Constant.VIBRANT
+import com.google.accompanist.systemuicontroller.rememberSystemUiController
 
 @ExperimentalMaterialApi
 @Composable
@@ -48,9 +49,17 @@ fun DetailsBottomSheet(
     val scaffoldState = rememberBottomSheetScaffoldState(
         bottomSheetState = rememberBottomSheetState(initialValue = BottomSheetValue.Expanded)
     )
+
     var vibrant by remember { mutableStateOf("#000000") }
     var darkVibrant by remember { mutableStateOf("#000000") }
     var onDarkVibrant by remember { mutableStateOf("#FFFFFF") }
+
+    val systemUi = rememberSystemUiController()
+    SideEffect {
+        systemUi.setStatusBarColor(
+            color = Color(parseColor(darkVibrant))
+        )
+    }
 
     LaunchedEffect(key1 = ninja) {
         vibrant = color[VIBRANT]!!
@@ -94,7 +103,7 @@ fun DetailsBottomSheet(
                     onCloseClicked = {
                         navController.popBackStack()
                     },
-                    backgroundColor = Color(parseColor(darkVibrant))
+                    backgroundColor = Color(parseColor(onDarkVibrant))
                 )
             }
         },
@@ -250,7 +259,11 @@ fun BottomSheetBackground(
             ) {
                 Icon(
                     imageVector = Icons.Default.Close,
-                    contentDescription = stringResource(id = R.string.close)
+                    contentDescription = stringResource(id = R.string.close),
+                    modifier = Modifier
+                        .padding(MaterialTheme.spacing.medium)
+                        .size(MaterialTheme.spacing.large),
+                    tint = backgroundColor
                 )
             }
         }

@@ -16,6 +16,8 @@ import androidx.compose.ui.graphics.drawscope.scale
 import androidx.compose.ui.graphics.drawscope.translate
 import androidx.compose.ui.graphics.vector.PathParser
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.boruto_compose.R
@@ -88,6 +90,9 @@ fun FilledStar(
     Canvas(
         modifier = Modifier
             .size(STAR_SIZE)
+            .semantics {
+                contentDescription = "FilledStar"
+            }
     ) {
         val left = (size.width / 2f) - (starBounds.width / 1.7f)
         val top = (size.height / 2f) - (starBounds.height / 1.7f)
@@ -118,6 +123,9 @@ fun HalfFilledStar(
     Canvas(
         modifier = Modifier
             .size(STAR_SIZE)
+            .semantics {
+                contentDescription = "HalfFilledStar"
+            }
     ) {
         val left = (size.width / 2f) - (starBounds.width / 1.7f)
         val top = (size.height / 2f) - (starBounds.height / 1.7f)
@@ -159,6 +167,9 @@ fun EmptyStar(
     Canvas(
         modifier = Modifier
             .size(STAR_SIZE)
+            .semantics {
+                contentDescription = "EmptyStar"
+            }
     ) {
         val left = (size.width / 2f) - (starBounds.width / 1.7f)
         val top = (size.height / 2f) - (starBounds.height / 1.7f)

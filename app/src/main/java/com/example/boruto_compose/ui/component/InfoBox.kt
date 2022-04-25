@@ -15,6 +15,8 @@ import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.boruto_compose.R
@@ -39,6 +41,9 @@ fun InfoBox(
             modifier = Modifier
                 .padding(end = MaterialTheme.spacing.small)
                 .size(MaterialTheme.spacing.large)
+                .semantics {
+                    contentDescription = "InfoBoxIcon"
+                }
         )
         Column{
             Text(
@@ -46,6 +51,10 @@ fun InfoBox(
                 color = textColor,
                 fontSize = MaterialTheme.typography.headlineSmall.fontSize,
                 fontWeight = FontWeight.Bold,
+                modifier = Modifier
+                    .semantics {
+                        contentDescription = "InfoBoxBigText"
+                    }
             )
             Text(
                 text = smallText,
@@ -53,6 +62,9 @@ fun InfoBox(
                 fontSize = MaterialTheme.typography.titleSmall.fontSize,
                 modifier = Modifier
                     .alpha(ContentAlpha.medium)
+                    .semantics {
+                        contentDescription = "InfoBoxSmallText"
+                    }
             )
         }
     }
